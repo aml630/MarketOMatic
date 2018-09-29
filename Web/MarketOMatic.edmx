@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MarketOMaticModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PinterestBoard">
+          <Key>
+            <PropertyRef Name="PinterestBoardId" />
+          </Key>
+          <Property Name="PinterestBoardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+          <Property Name="BoardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InnerBoard" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MarketOMatic.dbo.SiteToken' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SiteToken">
+          <Key>
+            <PropertyRef Name="SiteTokenId" />
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="SiteToken" />
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteTokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteType" Type="int" Nullable="false" />
+          <Property Name="SiteToken" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PinterestBoard_Site">
+          <End Role="Site" Type="Self.Site" Multiplicity="1" />
+          <End Role="PinterestBoard" Type="Self.PinterestBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="PinterestBoard">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketOMaticModelStoreContainer">
+          <EntitySet Name="PinterestBoard" EntityType="Self.PinterestBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Site" EntityType="Self.Site" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteToken" EntityType="Self.SiteToken" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SiteToken].[SiteTokenId] AS [SiteTokenId], 
+    [SiteToken].[SiteType] AS [SiteType], 
+    [SiteToken].[SiteToken] AS [SiteToken], 
+    [SiteToken].[SiteId] AS [SiteId]
+    FROM [dbo].[SiteToken] AS [SiteToken]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PinterestBoard_Site" Association="Self.FK_PinterestBoard_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="PinterestBoard" EntitySet="PinterestBoard" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarketOMaticModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PinterestBoard">
+          <Key>
+            <PropertyRef Name="PinterestBoardId" />
+          </Key>
+          <Property Name="PinterestBoardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+          <Property Name="BoardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InnerBoard" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Site" Relationship="Self.FK_PinterestBoard_Site" FromRole="PinterestBoard" ToRole="Site" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PinterestBoards" Relationship="Self.FK_PinterestBoard_Site" FromRole="Site" ToRole="PinterestBoard" />
+        </EntityType>
+        <EntityType Name="SiteToken">
+          <Key>
+            <PropertyRef Name="SiteTokenId" />
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="SiteToken1" />
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteTokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteType" Type="Int32" Nullable="false" />
+          <Property Name="SiteToken1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PinterestBoard_Site">
+          <End Role="Site" Type="Self.Site" Multiplicity="1" />
+          <End Role="PinterestBoard" Type="Self.PinterestBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="PinterestBoard">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketOMaticEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PinterestBoards" EntityType="Self.PinterestBoard" />
+          <EntitySet Name="Sites" EntityType="Self.Site" />
+          <EntitySet Name="SiteTokens" EntityType="Self.SiteToken" />
+          <AssociationSet Name="FK_PinterestBoard_Site" Association="Self.FK_PinterestBoard_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="PinterestBoard" EntitySet="PinterestBoards" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarketOMaticModelStoreContainer" CdmEntityContainer="MarketOMaticEntities">
+          <EntitySetMapping Name="PinterestBoards">
+            <EntityTypeMapping TypeName="MarketOMaticModel.PinterestBoard">
+              <MappingFragment StoreEntitySet="PinterestBoard">
+                <ScalarProperty Name="PinterestBoardId" ColumnName="PinterestBoardId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="BoardNumber" ColumnName="BoardNumber" />
+                <ScalarProperty Name="InnerBoard" ColumnName="InnerBoard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="MarketOMaticModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteTokens">
+            <EntityTypeMapping TypeName="MarketOMaticModel.SiteToken">
+              <MappingFragment StoreEntitySet="SiteToken">
+                <ScalarProperty Name="SiteTokenId" ColumnName="SiteTokenId" />
+                <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+                <ScalarProperty Name="SiteToken1" ColumnName="SiteToken" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

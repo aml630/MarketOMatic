@@ -71,7 +71,5 @@ namespace MarketOMatic.ExportLogic
             IRestResponse response = client.Execute(request);
             return response.Content;
         }
-
-
     }
 }
