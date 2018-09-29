@@ -142,10 +142,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ExportLogic\PinterestLogic.cs" />
+    <Compile Include="ExportLogic\PinterestModel.cs" />
+    <Compile Include="ExportLogic\RedditLogic.cs" />
+    <Compile Include="ExportLogic\TwitterLogic.cs" />
+    <Compile Include="ExportLogic\TwitterShareLogic.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImportLogic\GiphyLogic.cs" />
+    <Compile Include="ImportLogic\GoogleNewsLogic.cs" />
+    <Compile Include="ImportLogic\RSSFeedLogic.cs" />
+    <Compile Include="ImportLogic\YouTubeLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransformLogic\ImageLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketOMatic", "MarketOMatic\MarketOMatic.csproj", "{E4110F2F-3E7B-4698-AB0D-5A8059053857}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketOMatic_Web", "Web\MarketOMatic_Web.csproj", "{E23C4704-9480-43CA-B2DA-50A34E0C7994}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{E23C4704-9480-43CA-B2DA-50A34E0C7994}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

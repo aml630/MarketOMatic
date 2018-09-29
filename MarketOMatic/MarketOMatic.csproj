@@ -67,21 +67,6 @@
     <Compile Include="ImportLogic\GoogleNewsLogic.cs" />
     <Compile Include="ImportLogic\RSSFeedLogic.cs" />
     <Compile Include="ImportLogic\YouTubeLogic.cs" />
-    <Compile Include="MarketOMatic.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MarketOMatic.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MarketOMatic.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformLogic\ImageLogic.cs" />
@@ -90,26 +75,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="MarketOMatic.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MarketOMatic.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MarketOMatic.edmx.diagram">
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MarketOMatic.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MarketOMatic.Context.cs</LastGenOutput>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-    </Content>
-    <Content Include="MarketOMatic.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-      <LastGenOutput>MarketOMatic.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
