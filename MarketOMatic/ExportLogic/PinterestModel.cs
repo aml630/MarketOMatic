@@ -206,6 +206,22 @@ namespace MarketOMatic.ExportLogic
         {
             public Data data { get; set; }
         }
+
     }
+    class PinterestMyBoardsModel
+    {
+        public class Board
+        {
+            public string url { get; set; }
+            public string id { get; set; }
+            public string name { get; set; }
+        }
+
+        public class MyBoardsResponse
+        {
+            public List<Board> data { get; set; }
+        }
+    }
+
 
 }

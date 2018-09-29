@@ -56,6 +56,14 @@ namespace MarketOMatic.ExportLogic
             return response.Content;
         }
 
+        public string GetMyBoards()
+        {
+            var client = new RestClient("https://api.pinterest.com/v1/me/boards/?access_token=" + accessToken);
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            return response.Content;
+        }
+
         public string GetPinDetails(string pinId)
         {
             var client = new RestClient("https://api.pinterest.com/v1/pins/" + pinId + "/?access_token=" + accessToken + "&fields=id%2Clink%2Cnote%2Curl%2Cattribution%2Cimage%2Cboard%2Cmedia%2Ccolor%2Cmetadata%2Ccounts%2Ccreated_at%2Ccreator%2Coriginal_link");
