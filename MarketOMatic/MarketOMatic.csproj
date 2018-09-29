@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExportLogic\PinterestLogic.cs" />
+    <Compile Include="ExportLogic\PinterestModel.cs" />
     <Compile Include="ExportLogic\RedditLogic.cs" />
     <Compile Include="ExportLogic\TwitterLogic.cs" />
     <Compile Include="ExportLogic\TwitterShareLogic.cs" />
