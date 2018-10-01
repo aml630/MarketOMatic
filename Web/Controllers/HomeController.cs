@@ -10,21 +10,12 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            using (var db = new MarketOMaticEntities())
+            {
+                var test = db.Sites.ToList();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+                return View("Home", test);
+            };
         }
     }
 }
