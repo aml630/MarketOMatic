@@ -15,8 +15,9 @@ namespace Web
     public partial class SiteToken
     {
         public int SiteTokenId { get; set; }
-        public int SiteType { get; set; }
-        public string SiteToken1 { get; set; }
+        public string SiteName { get; set; }
+        public string ContentName { get; set; }
+        public string Value { get; set; }
         public int SiteId { get; set; }
     }
 }

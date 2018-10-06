@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MarketOMaticModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PinterestBoard">
+          <Key>
+            <PropertyRef Name="PinterestBoardId" />
+          </Key>
+          <Property Name="PinterestBoardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+          <Property Name="BoardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BoardName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PinterestPinDetails">
+          <Key>
+            <PropertyRef Name="PinDetailsId" />
+          </Key>
+          <Property Name="PinDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataattribution" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="datacreatorurl" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="datacreatorfirst_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="datacreatorlast_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="datacreatorid" Type="bigint" Nullable="false" />
+          <Property Name="dataurl" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="datamediatype" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="datacreated_at" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dataid" Type="bigint" Nullable="false" />
+          <Property Name="datanote" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="datacolor" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="datalink" Type="varchar" MaxLength="300" />
+          <Property Name="databoardurl" Type="varchar" MaxLength="52" Nullable="false" />
+          <Property Name="databoardid" Type="bigint" Nullable="false" />
+          <Property Name="databoardname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dataimageoriginalurl" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dataimageoriginalwidth" Type="int" Nullable="false" />
+          <Property Name="dataimageoriginalheight" Type="int" Nullable="false" />
+          <Property Name="datacountssaves" Type="int" Nullable="false" />
+          <Property Name="datacountscomments" Type="int" Nullable="false" />
+          <Property Name="dataoriginal_link" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiteToken">
+          <Key>
+            <PropertyRef Name="SiteTokenId" />
+          </Key>
+          <Property Name="SiteTokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PinterestBoard_Site">
+          <End Role="Site" Type="Self.Site" Multiplicity="1" />
+          <End Role="PinterestBoard" Type="Self.PinterestBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="PinterestBoard">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketOMaticModelStoreContainer">
+          <EntitySet Name="PinterestBoard" EntityType="Self.PinterestBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PinterestPinDetails" EntityType="Self.PinterestPinDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Site" EntityType="Self.Site" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteToken" EntityType="Self.SiteToken" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PinterestBoard_Site" Association="Self.FK_PinterestBoard_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="PinterestBoard" EntitySet="PinterestBoard" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarketOMaticModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PinterestBoard">
+          <Key>
+            <PropertyRef Name="PinterestBoardId" />
+          </Key>
+          <Property Name="PinterestBoardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+          <Property Name="BoardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BoardName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Site" Relationship="Self.FK_PinterestBoard_Site" FromRole="PinterestBoard" ToRole="Site" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PinterestBoards" Relationship="Self.FK_PinterestBoard_Site" FromRole="Site" ToRole="PinterestBoard" />
+        </EntityType>
+        <EntityType Name="SiteToken">
+          <Key>
+            <PropertyRef Name="SiteTokenId" />
+          </Key>
+          <Property Name="SiteTokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PinterestBoard_Site">
+          <End Role="Site" Type="Self.Site" Multiplicity="1" />
+          <End Role="PinterestBoard" Type="Self.PinterestBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="PinterestBoard">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketOMaticEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PinterestBoards" EntityType="Self.PinterestBoard" />
+          <EntitySet Name="Sites" EntityType="Self.Site" />
+          <EntitySet Name="SiteTokens" EntityType="Self.SiteToken" />
+          <AssociationSet Name="FK_PinterestBoard_Site" Association="Self.FK_PinterestBoard_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="PinterestBoard" EntitySet="PinterestBoards" />
+          </AssociationSet>
+          <EntitySet Name="PinterestPinDetails" EntityType="MarketOMaticModel.PinterestPinDetail" />
+        </EntityContainer>
+        <EntityType Name="PinterestPinDetail">
+          <Key>
+            <PropertyRef Name="PinDetailsId" />
+          </Key>
+          <Property Name="PinDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataattribution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="datacreatorurl" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="datacreatorfirst_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datacreatorlast_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datacreatorid" Type="Int64" Nullable="false" />
+          <Property Name="dataurl" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="datamediatype" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="datacreated_at" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dataid" Type="Int64" Nullable="false" />
+          <Property Name="datanote" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="datacolor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="datalink" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="databoardurl" Type="String" Nullable="false" MaxLength="52" FixedLength="false" Unicode="false" />
+          <Property Name="databoardid" Type="Int64" Nullable="false" />
+          <Property Name="databoardname" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dataimageoriginalurl" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dataimageoriginalwidth" Type="Int32" Nullable="false" />
+          <Property Name="dataimageoriginalheight" Type="Int32" Nullable="false" />
+          <Property Name="datacountssaves" Type="Int32" Nullable="false" />
+          <Property Name="datacountscomments" Type="Int32" Nullable="false" />
+          <Property Name="dataoriginal_link" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarketOMaticModelStoreContainer" CdmEntityContainer="MarketOMaticEntities">
+          <EntitySetMapping Name="PinterestBoards">
+            <EntityTypeMapping TypeName="MarketOMaticModel.PinterestBoard">
+              <MappingFragment StoreEntitySet="PinterestBoard">
+                <ScalarProperty Name="PinterestBoardId" ColumnName="PinterestBoardId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="BoardNumber" ColumnName="BoardNumber" />
+                <ScalarProperty Name="BoardName" ColumnName="BoardName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="MarketOMaticModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteTokens">
+            <EntityTypeMapping TypeName="MarketOMaticModel.SiteToken">
+              <MappingFragment StoreEntitySet="SiteToken">
+                <ScalarProperty Name="SiteTokenId" ColumnName="SiteTokenId" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="ContentName" ColumnName="ContentName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PinterestPinDetails">
+            <EntityTypeMapping TypeName="MarketOMaticModel.PinterestPinDetail">
+              <MappingFragment StoreEntitySet="PinterestPinDetails">
+                <ScalarProperty Name="dataoriginal_link" ColumnName="dataoriginal_link" />
+                <ScalarProperty Name="datacountscomments" ColumnName="datacountscomments" />
+                <ScalarProperty Name="datacountssaves" ColumnName="datacountssaves" />
+                <ScalarProperty Name="dataimageoriginalheight" ColumnName="dataimageoriginalheight" />
+                <ScalarProperty Name="dataimageoriginalwidth" ColumnName="dataimageoriginalwidth" />
+                <ScalarProperty Name="dataimageoriginalurl" ColumnName="dataimageoriginalurl" />
+                <ScalarProperty Name="databoardname" ColumnName="databoardname" />
+                <ScalarProperty Name="databoardid" ColumnName="databoardid" />
+                <ScalarProperty Name="databoardurl" ColumnName="databoardurl" />
+                <ScalarProperty Name="datalink" ColumnName="datalink" />
+                <ScalarProperty Name="datacolor" ColumnName="datacolor" />
+                <ScalarProperty Name="datanote" ColumnName="datanote" />
+                <ScalarProperty Name="dataid" ColumnName="dataid" />
+                <ScalarProperty Name="datacreated_at" ColumnName="datacreated_at" />
+                <ScalarProperty Name="datamediatype" ColumnName="datamediatype" />
+                <ScalarProperty Name="dataurl" ColumnName="dataurl" />
+                <ScalarProperty Name="datacreatorid" ColumnName="datacreatorid" />
+                <ScalarProperty Name="datacreatorlast_name" ColumnName="datacreatorlast_name" />
+                <ScalarProperty Name="datacreatorfirst_name" ColumnName="datacreatorfirst_name" />
+                <ScalarProperty Name="datacreatorurl" ColumnName="datacreatorurl" />
+                <ScalarProperty Name="dataattribution" ColumnName="dataattribution" />
+                <ScalarProperty Name="PinDetailsId" ColumnName="PinDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

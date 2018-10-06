@@ -1,24 +1,46 @@
-﻿@{
-    Layout = null;
+﻿<h1>@Model.SiteName</h1>
+
+<h4>Pinterest Info</h4>
+<button onclick="MakeCall('Pinterest/me')">Get Me Data</button>
+<button onclick="MakeCall('Pinterest/MyBoards')">Get My Boards</button>
+
+@foreach (var board in Model.PinterestBoards)
+{
+    <h5 class="boardName">@board.BoardName</h5>
+    <button onclick="MakeCall('Pinterest/TweetPinFromBoard')">Get Pin Details</button>
 }
-<html>
-<head>
-    <title>Hello React</title>
-</head>
-<body>
-    <div id="content"></div>
+
+<h4>Twitter Info</h4>
+
+<h2>Import Feeds</h2>
+<button onclick="MakeCall('Pinterest/GetExportBoard')">Get Outside Board Pins</button>
+<button onclick="MakeCall('Pinterest/GetPinDetails')">Get Pin Details</button>
+<h2>Export Feeds</h2>
+
+<p class="response">Call Response</p>
 
 
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function MakeCall(path) {
 
+        var url = 'http://localhost/MarketOMatic/' + path
 
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
 
+        $.ajax(settings).done(function (response) {
 
+            $(".response").text(response);
+        });
+    }
 
-
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.0/umd/react.development.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.0/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    <script src="@Url.Content("~/Scripts/Tutorial.jsx")"></script>
-</body>
-</html>
+</script>

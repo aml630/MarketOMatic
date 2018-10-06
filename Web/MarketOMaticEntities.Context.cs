@@ -28,5 +28,6 @@ namespace Web
         public virtual DbSet<PinterestBoard> PinterestBoards { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
         public virtual DbSet<SiteToken> SiteTokens { get; set; }
+        public virtual DbSet<PinterestPinDetail> PinterestPinDetails { get; set; }
     }
 }

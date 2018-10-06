@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="10f67e4281a144098b6bdd70c91c40ab" Name="Diagram1">
+      <Diagram DiagramId="e98eb7527a7741eb96d747503fe1c4df" Name="Diagram1">
         <EntityTypeShape EntityType="MarketOMaticModel.PinterestBoard" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketOMaticModel.Site" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketOMaticModel.SiteToken" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketOMaticModel.SiteToken" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="MarketOMaticModel.FK_PinterestBoard_Site" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MarketOMaticModel.PinterestPinDetail" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

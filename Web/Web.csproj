@@ -194,44 +194,49 @@
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="ExportLogic\PinterestLogic.cs" />
-    <Compile Include="ExportLogic\PinterestModel.cs" />
-    <Compile Include="ExportLogic\RedditLogic.cs" />
-    <Compile Include="ExportLogic\TwitterLogic.cs" />
-    <Compile Include="ExportLogic\TwitterShareLogic.cs" />
+    <Compile Include="Controllers\PinterestController.cs" />
+    <Compile Include="Logic\ExportLogic\PinterestLogic.cs" />
+    <Compile Include="MarketOMaticEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketOMaticEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketOMaticEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketOMaticEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketOMaticEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketOMaticEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PinterestModel.cs" />
+    <Compile Include="Logic\ExportLogic\RedditLogic.cs" />
+    <Compile Include="Logic\ExportLogic\TwitterLogic.cs" />
+    <Compile Include="Logic\ExportLogic\TwitterShareLogic.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ImportLogic\GiphyLogic.cs" />
-    <Compile Include="ImportLogic\GoogleNewsLogic.cs" />
-    <Compile Include="ImportLogic\RSSFeedLogic.cs" />
-    <Compile Include="ImportLogic\YouTubeLogic.cs" />
-    <Compile Include="MarketOMatic.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MarketOMatic.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MarketOMatic.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Logic\ImportLogic\GiphyLogic.cs" />
+    <Compile Include="Logic\ImportLogic\GoogleNewsLogic.cs" />
+    <Compile Include="Logic\ImportLogic\RSSFeedLogic.cs" />
+    <Compile Include="Logic\ImportLogic\YouTubeLogic.cs" />
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="PinterestBoard.cs">
-      <DependentUpon>MarketOMatic.tt</DependentUpon>
+      <DependentUpon>MarketOMaticEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PinterestPinDetail.cs">
+      <DependentUpon>MarketOMaticEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Logic\TransformLogic\ImageLogic.cs" />
     <Compile Include="Site.cs">
-      <DependentUpon>MarketOMatic.tt</DependentUpon>
+      <DependentUpon>MarketOMaticEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SiteToken.cs">
-      <DependentUpon>MarketOMatic.tt</DependentUpon>
+      <DependentUpon>MarketOMaticEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TransformLogic\ImageLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -240,27 +245,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="MarketOMatic.Context.tt">
+    <Content Include="MarketOMaticEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MarketOMatic.Context.cs</LastGenOutput>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
+      <DependentUpon>MarketOMaticEntities.edmx</DependentUpon>
+      <LastGenOutput>MarketOMaticEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MarketOMatic.tt">
+    <Content Include="MarketOMaticEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
-      <LastGenOutput>MarketOMatic.cs</LastGenOutput>
+      <DependentUpon>MarketOMaticEntities.edmx</DependentUpon>
+      <LastGenOutput>MarketOMaticEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="MarketOMatic.edmx">
+    <EntityDeploy Include="MarketOMaticEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MarketOMatic.Designer.cs</LastGenOutput>
+      <LastGenOutput>MarketOMaticEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="MarketOMatic.edmx.diagram">
-      <DependentUpon>MarketOMatic.edmx</DependentUpon>
+    <Content Include="MarketOMaticEntities.edmx.diagram">
+      <DependentUpon>MarketOMaticEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -284,11 +289,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\React.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Pinterest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -17,7 +17,7 @@ namespace Web
         public int PinterestBoardId { get; set; }
         public int SiteId { get; set; }
         public string BoardNumber { get; set; }
-        public bool InnerBoard { get; set; }
+        public string BoardName { get; set; }
     
         public virtual Site Site { get; set; }
     }

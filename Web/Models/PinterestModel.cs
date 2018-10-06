@@ -116,7 +116,7 @@ namespace MarketOMatic.ExportLogic
         }
     }
 
-    class PinterestPinDetailsModel
+    public class PinterestPinDetailsModel
     {
         public class Creator
         {
@@ -208,6 +208,7 @@ namespace MarketOMatic.ExportLogic
         }
 
     }
+
     class PinterestMyBoardsModel
     {
         public class Board
@@ -222,6 +223,4 @@ namespace MarketOMatic.ExportLogic
             public List<Board> data { get; set; }
         }
     }
-
-
 }

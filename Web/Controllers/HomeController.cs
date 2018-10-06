@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -12,10 +14,15 @@ namespace Web.Controllers
         {
             using (var db = new MarketOMaticEntities())
             {
-                var test = db.Sites.ToList();
+                var thisSite = db.Sites.Include("PinterestBoards").FirstOrDefault();
 
-                return View("Home", test);
-            };
+                return View("Home", thisSite);
+            }
+        }
+
+        public ActionResult React()
+        {
+            return View("React");
         }
     }
 }
